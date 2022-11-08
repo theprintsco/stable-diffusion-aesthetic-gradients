@@ -51,7 +51,7 @@ parser.add_argument("--style", help="Path to style embedding", required=True, ty
 parser.add_argument("--model", help="HuggingFace ID for pre-trained stable diffusion model", required=True, type=str,)
 parser.add_argument("--device", help="Device to run model on.", required=True, type=str,)
 parser.add_argument("--hftoken", help="HuggingFaces access key", required=True, type=str,)
-parser.add_argument("--steps", help="Steps to run conditioning", required=True, type=str,)
+parser.add_argument("--steps", help="Steps to run conditioning", required=True, type=int,)
 arguments = parser.parse_args()
 
 pipeline: diffusers.StableDiffusionPipeline = diffusers.StableDiffusionPipeline.from_pretrained(

@@ -63,7 +63,7 @@ style_embedding = style_embedding / style_embedding.norm(dim=-1, keepdim=True,)
 text_inputs: torch.Tensor = pipeline.tokenizer(
     arguments.prompt, padding="max_length", max_length=pipeline.tokenizer.model_max_length, return_tensors='pt',)
 
-text_input_ids: torch.Tensor = text_inputs.text_input_ids.to(arguments.device,)
+text_input_ids: torch.Tensor = text_inputs.input_ids.to(arguments.device,)
 
 optimizer: torch.optim.Adam = torch.optim.Adam(pipeline.text_encoder.parameters(), lr=1e-4,)
 

@@ -1,12 +1,18 @@
+import argparse
 import clip
 import glob
 from PIL import Image
 import torch
 import tqdm
 
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--images", help="Path to directory containing images.", required=True, type=str,)
+parser.add_argument("--path", help="Path to write the embedding.", required=True, type=str,)
+arguments = parser.parse_args()
+
 # Just put your images in a folder inside reference_images/
-aesthetic_style = "aivazovsky"
-image_paths = glob.glob(f"reference_images/{aesthetic_style}/*")
+aesthetic_style = arguments.images
+image_paths = glob.glob(aesthetic_style)
 
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -23,4 +29,4 @@ with torch.no_grad():
     embs = torch.cat(embs, dim=0).mean(dim=0, keepdim=True)
 
     # The generated embedding will be located here
-    torch.save(embs, f"aesthetic_embeddings/{aesthetic_style}.pt")
+    torch.save(embs, arguments.path)

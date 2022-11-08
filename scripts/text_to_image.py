@@ -69,7 +69,7 @@ optimizer: torch.optim.Adam = torch.optim.Adam(pipeline.text_encoder.parameters(
 
 _optimize: typing.Callable = functools.partial(optimize, style_embedding, optimizer, pipeline.text_encoder,)
 
-list(map(_optimize, [text_input_ids] * argument.steps))
+list(map(_optimize, [text_input_ids] * arguments.steps))
 
 torch.cuda.empty_cache()
 pipeline(arguments.prompt)

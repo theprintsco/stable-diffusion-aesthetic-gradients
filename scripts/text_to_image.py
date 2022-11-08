@@ -61,7 +61,7 @@ style_embedding: torch.Tensor = torch.load(arguments.style,).float().to(argument
 style_embedding = style_embedding / style_embedding.norm(dim=-1, keepdim=True,)
 
 text_inputs: torch.Tensor = pipeline.tokenizer(
-    arguments.prompt, padding="max_length", max_length=pipeline.tokenizer.max_length, return_tensors='pt',)
+    arguments.prompt, padding="max_length", max_length=pipeline.tokenizer.model_max_length, return_tensors='pt',)
 
 text_input_ids: torch.Tensor = text_inputs.text_input_ids.to(arguments.device,)
 

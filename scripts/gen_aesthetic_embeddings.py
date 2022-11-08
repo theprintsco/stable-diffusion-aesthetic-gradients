@@ -1,6 +1,7 @@
 import argparse
 import clip
 import glob
+import os
 from PIL import Image
 import torch
 import tqdm
@@ -12,7 +13,7 @@ arguments = parser.parse_args()
 
 # Just put your images in a folder inside reference_images/
 aesthetic_style = arguments.images
-image_paths = glob.glob(aesthetic_style)
+image_paths = glob.glob(os.path.join(arguments.images, "*.jpg"))
 
 
 device = "cuda" if torch.cuda.is_available() else "cpu"

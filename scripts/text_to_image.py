@@ -72,4 +72,4 @@ _optimize: typing.Callable = functools.partial(optimize, style_embedding, optimi
 list(map(_optimize, [text_input_ids] * arguments.steps))
 
 torch.cuda.empty_cache()
-pipeline(arguments.prompt)
+pipeline(arguments.prompt).save("image.jpg")

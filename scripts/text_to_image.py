@@ -17,7 +17,7 @@ import torch
 import transformers
 
 def optimize(
-    style_embedding: torch.Tensor, 
+    image_embedding: torch.Tensor, 
     optimizer: torch.optim.Optimizer, 
     text_encoder: transformers.CLIPTextModel,
     text_ids: torch.Tensor,

@@ -52,6 +52,7 @@ parser.add_argument("--model", help="HuggingFace ID for pre-trained stable diffu
 parser.add_argument("--device", help="Device to run model on.", required=True, type=str,)
 parser.add_argument("--hftoken", help="HuggingFaces access key", required=True, type=str,)
 parser.add_argument("--steps", help="Steps to run conditioning", required=True, type=int,)
+parser.add_argument("--lr", help="Learning rate", required=True, type=float,)
 arguments = parser.parse_args()
 
 pipeline: diffusers.StableDiffusionPipeline = diffusers.StableDiffusionPipeline.from_pretrained(
@@ -65,7 +66,7 @@ text_inputs: torch.Tensor = pipeline.tokenizer(
 
 text_input_ids: torch.Tensor = text_inputs.input_ids.to(arguments.device,)
 
-optimizer: torch.optim.Adam = torch.optim.Adam(pipeline.text_encoder.parameters(), lr=1e-3,)
+optimizer: torch.optim.Adam = torch.optim.Adam(pipeline.text_encoder.parameters(), lr=arguments.lr,)
 
 _optimize: typing.Callable = functools.partial(optimize, style_embedding, optimizer, pipeline.text_encoder,)
 

@@ -65,7 +65,7 @@ text_inputs: torch.Tensor = pipeline.tokenizer(
 
 text_input_ids: torch.Tensor = text_inputs.input_ids.to(arguments.device,)
 
-optimizer: torch.optim.Adam = torch.optim.Adam(pipeline.text_encoder.parameters(), lr=1e-4,)
+optimizer: torch.optim.Adam = torch.optim.Adam(pipeline.text_encoder.parameters(), lr=1e-3,)
 
 _optimize: typing.Callable = functools.partial(optimize, style_embedding, optimizer, pipeline.text_encoder,)
 
